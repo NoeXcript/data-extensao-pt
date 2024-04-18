@@ -1,27 +1,42 @@
-import dateFormat from 'dateformat'
-import moment from 'moment'
+import date from 'date-and-time'
 
 const dataExtensao = (dat, ano = true) => {
     let meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
 
-    dat = formatDate(dat)
-
     if (!dat)
         return null
+
+
+
+    dat = new Date(dat)
+
+
+    dat = formatDate(dat, 'DD/MM/YYYY')
+
     const data = new Date(dat)
 
-    return ano ? `${getDia(data.getDate())} de ${meses[data.getMonth()]} de ${data.getFullYear()}` : `${getDia(data.getDate())} de ${meses[data.getMonth()]}`
+
+    if (['Invalid Date'].includes(data.toString())) return null
+
+    const data_descricao = ano ? `${getDia(data.getDate())} de ${meses[data.getMonth()]} de ${data.getFullYear()}` : `${getDia(data.getDate())} de ${meses[data.getMonth()]}`
+    return {
+        ano: data.getFullYear(),
+        extensao: data_descricao
+    }
+
 }
 
-function formatDate(data = null, format = 'yyyy-mm-dd') {
+function formatDate(data = null, format = 'YYYY/MM/DD') {
     try {
         if (!data) {
-            return moment(new Date(), format);
+            return date.format(new Date(), format);
+
         }
         if (typeof data === 'string' && /^(\d{2}\/\d{2}\/\d{4})$/.test(data)) {
             data = data.split('/').reverse().join('-');
         }
-        return dateFormat(data, format);
+
+        return date.format(data, format);
     } catch (e) {
         return null
     }
@@ -32,7 +47,7 @@ function getDia(dia,) {
 }
 
 
-const data = "2022-11-20"
+const data = "9-12-1399"
 const dataPorExtensao = dataExtensao(data)
 
 console.log(dataPorExtensao)
