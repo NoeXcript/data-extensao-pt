@@ -16,8 +16,6 @@ const dataExtensao = (dat, ano = true) => {
 
 function formatDate(data = null, format = 'yyyy-mm-dd') {
     try {
-        if (!data) return;
-
         if (!data) {
             return dateFormat(new Date(), format);
         }
