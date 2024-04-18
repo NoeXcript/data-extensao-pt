@@ -1,11 +1,10 @@
 import dateFormat from 'dateformat'
-
-
+import moment from 'moment'
 
 const dataExtensao = (dat, ano = true) => {
     let meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
 
-    dat = formatDate(dat, 'dd-mm-yyyy')
+    dat = formatDate(dat)
 
     if (!dat)
         return null
@@ -16,10 +15,10 @@ const dataExtensao = (dat, ano = true) => {
 
 function formatDate(data = null, format = 'yyyy-mm-dd') {
     try {
-        if (!data) return;
+       
 
         if (!data) {
-            return dateFormat(new Date(), format);
+            return moment(new Date(), format);
         }
         if (typeof data === 'string' && /^(\d{2}\/\d{2}\/\d{4})$/.test(data)) {
             data = data.split('/').reverse().join('-');
@@ -35,7 +34,7 @@ function getDia(dia,) {
 }
 
 
-const data = "2022-11-01"
+const data = "2022-11-20"
 const dataPorExtensao = dataExtensao(data)
 
 console.log(dataPorExtensao)
