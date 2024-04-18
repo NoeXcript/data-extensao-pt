@@ -1,0 +1,19 @@
+{
+  "name": "formatdate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": "v20.11.1"
+  },
+  "scripts": {
+    "start": "node --watch ./src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dateformat": "^5.0.3"
+  }
+}
